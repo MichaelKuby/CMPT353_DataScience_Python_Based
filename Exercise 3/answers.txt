@@ -1,0 +1,43 @@
+Michael Kuby
+301562996
+
+1.  When smoothing the CPU temperature, do you think you got a better result with LOESS or Kalman smoothing? 
+    What differences did you notice?
+
+I found that it was easier to get really good results with the LOESS smoothening. This makes some sense 
+due to the large number of data points supplied. That being said, the results with the Kalman smoothening
+did still seem quite good.
+
+The main difference I noticed was that it was rather difficult to find a smooth result with Kalman's
+approach. I found that the smoothed filter either did not seem to want to fit the scatter plot points
+very well, or they tracked them TOO well.
+
+2.  In the CSV files, you might have also noticed other data about the observations: 
+    accelerometer (acceleration in x, y, z directions), gyroscope (rate of turning, pitch, roll, yaw). 
+    How could those have been used to make a better prediction about the “next” latitude and longitude?
+
+Variables with regards to acceleration, especially in the x and y direction, would have given insight into
+the pace that you were walking, and as a result insight into the distance travelled (ie. it could have helped
+to predict your next latitude or longitude coordinate). The z variable of acceleration may have given insight into
+whether you were going uphill or downhill, similarly affecting your speed and thus distance of travel.
+
+Rates of turning, pitch, roll, and yaw, may have been less useful in this scenario as I would presume that they
+are designed for tracking changes in position with respect to a three dimensional mode of travel (like flying a plane,
+for example), where pitch, roll, and yaw play an intricate factor in understanding where the object is going. For a
+person walking, on the other hand, on a rather 2-dimensional plane, these values seem somewhat less useful.
+
+3. (skipped because I don't understand)
+
+4.  [Optional, because it's interesting but not that interesting] In your calc_distance.py, temporarily set the 
+    transition_covariance values for the latitude and longitude to be very small (like 1/1000 of the corresponding 
+    observation_covariance values). This will give you a track in out.gpx that is basically "just the predictions, 
+    ignore the measurements". Have a look at the tracks on a viewer that includes a map (so you can see the track 
+    relative to roads/sidewalks). What can you infer about the predictions we're making?
+
+What I'm seeing is that the "square" you walked in is very compressed. It is as if every distance in each direction
+you walked was cut by a third, or even a half. What I might infer about the predictions we're making, then, is that
+the data we actually collect tends to gather additional movement or motion that is not actually present. Hence,
+the process of removing noise via the kalman filter is a recognition that the real path walked is much smoother 
+and straighter than what our data shows, and to more accurately emulate this path we need to remove the noise, 
+which is akin to removing "motion" or "distance" that was never actually walked in your path, but nonetheless
+shows up in the data when it hasn't been removed.
