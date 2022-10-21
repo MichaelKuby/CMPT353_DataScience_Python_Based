@@ -19,11 +19,10 @@ def main():
     # Central Limit Theorem suggests if n > 30 we can begin to assume normality
     # So we will 3x that to be safe
     np.random.seed(0)
-    rands = 5
-    rand = pd.DataFrame(np.random.choice(200, (50, rands)), columns=list('ABCDE'))
+    rands = 50
+    rand = pd.DataFrame(np.random.choice(200, (50, rands)))
     
-    df = pd.DataFrame(index = range(rands), columns=['qs1_elapsed', 'qs2_elapsed', 'qs3_elapsed', 'qs4_elapsed', 
-                               'qs5_elapsed', 'merge_elapsed', 'partition_elapsed'])
+    df = pd.DataFrame(index = range(rands), columns=['qs1_elapsed', 'qs2_elapsed', 'qs3_elapsed', 'qs4_elapsed', 'qs5_elapsed', 'merge_elapsed', 'partition_elapsed'])
     
     i = 0
     for columnName in rand:
