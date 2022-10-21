@@ -17,7 +17,6 @@ As large as possible to assume normality
 """
 def main():
     # Central Limit Theorem suggests if n > 30 we can begin to assume normality
-    # So we will 3x that to be safe
     np.random.seed(0)
     rands = 50
     rand = pd.DataFrame(np.random.choice(200, (50, rands)))
