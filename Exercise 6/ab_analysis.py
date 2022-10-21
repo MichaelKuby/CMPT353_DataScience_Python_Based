@@ -31,7 +31,6 @@ def main():
     
     """
     # Tackle Question 1 for all users.
-    
     # Split data into new and improved and original based on uid
     
     new = df[df['uid'] % 2 == 1].copy()
@@ -48,13 +47,11 @@ def main():
     t_users, p_users, dof_users, freq_users = chi2_contingency(ct) 
     
     # Tackle Question 2 for all users.
-    
     # Null hypothesis will be that the sum of the rankings in the two groups does not differ
     
     mwu_searches = stats.mannwhitneyu(new['search_count'], og['search_count'])
     
     # Tackle Question 1 for all instructors.
-    
     # contingency table
     
     ct2 = pd.DataFrame(index=['New', 'Old'], columns=['0', '> 0'])
@@ -66,7 +63,6 @@ def main():
     t_inst, p_inst, dof_inst, freq_inst = chi2_contingency(ct2) 
     
     # Tackle Question 2 for all instructors.
-    
     # Null hypothesis will be that the sum of the rankings in the two groups does not differ
     
     new_instr = df[(df['uid'] % 2 == 1) & (df['is_instructor'] == True)].copy()
