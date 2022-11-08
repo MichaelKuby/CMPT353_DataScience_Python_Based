@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from skimage.color import lab2rgb
+from skimage.color import rgb2lab
 from skimage.color import rgb2hsv
 import sys
 from sklearn.model_selection import train_test_split
